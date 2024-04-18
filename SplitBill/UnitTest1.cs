@@ -89,79 +89,76 @@ namespace SplitBill
         }
         // test case for third method
 
-[TestMethod]
-public void CalculateTip_EqualSplit_ShouldReturnCorrectAmounts()
-{
-    // Arrange
-    var tipCalculator = new Split_Lib.Splitcalc();
-    var mealCosts = new Dictionary<string, decimal>
-    {
-        { "Alice", 10m },
-        { "Bob", 20m },
-        { "Charlie", 30m }
-    };
-    float tipPercentage = 10; // 
+        [TestMethod]
+        public void CalculateTip_EqualSplit_ShouldReturnCorrectAmounts()
+        {
+            var tipCalculator = new Split_Lib.Splitcalc();
+            var mealCosts = new Dictionary<string, decimal>
+            {
+                { "Alice", 10m },
+                { "Bob", 20m },
+                { "Charlie", 30m }
+            };
+            float tipPercentage = 10; 
 
-     var expectedTipAmounts = new Dictionary<string, decimal>
-    {
-        { "Alice", 1m },
-        { "Bob", 2m },
-        { "Charlie", 3m }
-    };
+            var expectedTipAmounts = new Dictionary<string, decimal>
+            {
+                { "Alice", 1m },
+                { "Bob", 2m },
+                { "Charlie", 3m }
+            };
 
-    // Act
-    var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
+            var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
 
-    // Assert
-    CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
-}
- [TestMethod]
-public void CalculateTip_NoCost_ShouldReturnZeroTip()
-{
-    var tipCalculator = new Split_Lib.Splitcalc();
-    var mealCosts = new Dictionary<string, decimal>
-    {
-        { "Alice", 0m },
-        { "Bob", 0m },
-        { "Charlie", 0m }
-    };
-    float tipPercentage = 15; // 15% tip
+            CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
+        }
+        [TestMethod]
+        public void CalculateTip_NoCost_ShouldReturnZeroTip()
+        {
+            var tipCalculator = new Split_Lib.Splitcalc();
+            var mealCosts = new Dictionary<string, decimal>
+            {
+                { "Alice", 0m },
+                { "Bob", 0m },
+                { "Charlie", 0m }
+            };
+            float tipPercentage = 15; // 15% tip
 
-     var expectedTipAmounts = new Dictionary<string, decimal>
-    {
-        { "Alice", 0m },
-        { "Bob", 0m },
-        { "Charlie", 0m }
-    };
+            var expectedTipAmounts = new Dictionary<string, decimal>
+            {
+                { "Alice", 0m },
+                { "Bob", 0m },
+                { "Charlie", 0m }
+            };
 
-    var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
+            var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
 
-    CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
-}
+            CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
+        }
 
-[TestMethod]
-public void CalculateTip_DifferentCosts_ShouldReturnCorrectAmounts()
-{
-    var tipCalculator = new Split_Lib.Splitcalc();
-    var mealCosts = new Dictionary<string, decimal>
-    {
-        { "Alice", 15.50m },
-        { "Bob", 25.75m },
-        { "Charlie", 12.25m }
-    };
-    float tipPercentage = 20; // 20% tip
+        [TestMethod]
+        public void CalculateTip_DifferentCosts_ShouldReturnCorrectAmounts()
+        {
+            var tipCalculator = new Split_Lib.Splitcalc();
+            var mealCosts = new Dictionary<string, decimal>
+            {
+                { "Alice", 15.50m },
+                { "Bob", 25.75m },
+                { "Charlie", 12.25m }
+            };
+            float tipPercentage = 20; // 20% tip
 
-    var expectedTipAmounts = new Dictionary<string, decimal>
-    {
-        { "Alice", 3.10m },
-        { "Bob", 5.15m },
-        { "Charlie", 2.45m }
-    };
+            var expectedTipAmounts = new Dictionary<string, decimal>
+            {
+                { "Alice", 3.10m },
+                { "Bob", 5.15m },
+                { "Charlie", 2.45m }
+            };
 
-    var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
+            var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
 
-    CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
-    }
-    }
+            CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
+            }
+            }
 }
     
