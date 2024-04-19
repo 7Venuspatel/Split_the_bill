@@ -95,17 +95,17 @@ namespace SplitBill
             var tipCalculator = new Split_Lib.Splitcalc();
             var mealCosts = new Dictionary<string, decimal>
             {
-                { "Alice", 10m },
-                { "Bob", 20m },
-                { "Charlie", 30m }
+                { "venus", 10m },
+                { "meet", 20m },
+                { "tej", 30m }
             };
             float tipPercentage = 10; 
 
             var expectedTipAmounts = new Dictionary<string, decimal>
             {
-                { "Alice", 1m },
-                { "Bob", 2m },
-                { "Charlie", 3m }
+                { "venus", 1m },
+                { "meet", 2m },
+                { "tej", 3m }
             };
 
             var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
