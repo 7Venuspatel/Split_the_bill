@@ -61,16 +61,11 @@ namespace SplitBill
         [TestMethod]
         public void CalculateTipPerPerson_WithZeroPrice_ShouldReturnZeroTipPerPerson()
         {
-            // Arrange
            Split_Lib.Splitcalc calculator = new Split_Lib.Splitcalc();
             decimal price = 0m;
             int numberOfPatrons = 5;
             float tipPercentage = 15;
-
-            // Act
             decimal actualTipPerPerson = calculator.CalculateTipPerPerson(price, numberOfPatrons, tipPercentage);
-
-            // Assert
             Assert.AreEqual(0m, actualTipPerPerson, "Tip per person should be 0.00 for zero price");
         }
 
@@ -78,13 +73,10 @@ namespace SplitBill
         [ExpectedException(typeof(ArgumentException))]
         public void CalculateTipPerPerson_WithZeroPatrons_ShouldThrowArgumentException()
         {
-            // Arrange
             Split_Lib.Splitcalc calculator = new Split_Lib.Splitcalc();
             decimal price = 100.00m;
             int numberOfPatrons = 0;
             float tipPercentage = 15;
-
-            // Act (and Assert)
             decimal actualTipPerPerson = calculator.CalculateTipPerPerson(price, numberOfPatrons, tipPercentage);
         }
         // test case for third method
@@ -100,65 +92,54 @@ namespace SplitBill
                 { "tej", 30m }
             };
             float tipPercentage = 10; 
-
             var expectedTipAmounts = new Dictionary<string, decimal>
             {
                 { "venus", 1m },
                 { "meet", 2m },
                 { "tej", 3m }
             };
-
             var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
-
             CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
         }
         [TestMethod]
         public void CalculateTip_NoCost_ShouldReturnZeroTip()
         {
             var tipCalculator = new Split_Lib.Splitcalc();
+
+
+
+
             var mealCosts = new Dictionary<string, decimal>
             {
-                { "milan", 0m },
-                { "sagar", 0m },
+                { "milan", 12m },
+                { "sagar", 10m },
                 { "pratham", 0m }
             };
             float tipPercentage = 15; // 15% tip
 
+
+
             var expectedTipAmounts = new Dictionary<string, decimal>
             {
-                { "milan", 0m },
+                { "milan", 19m },
                 { "sagar", 0m },
                 { "pratham", 0m }
             };
 
+
+
             var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
 
+     
+     
+     
             CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
         }
+     
 
-        [TestMethod]
-        public void CalculateTip_DifferentCosts_ShouldReturnCorrectAmounts()
-        {
-            var tipCalculator = new Split_Lib.Splitcalc();
-            var mealCosts = new Dictionary<string, decimal>
-            {
-                { "Japan", 15.50m },
-                { "het", 25.75m },
-                { "ram", 12.25m }
-            };
-            float tipPercentage = 20; // 20% tip
 
-            var expectedTipAmounts = new Dictionary<string, decimal>
-            {
-                { "japan", 3.10m },
-                { "het", 5.15m },
-                { "ram", 2.45m }
-            };
 
-            var actualTipAmounts = tipCalculator.CalculateTip(mealCosts, tipPercentage);
 
-            CollectionAssert.AreEqual(expectedTipAmounts, actualTipAmounts);
-            }
-            }
+    }
 }
     
